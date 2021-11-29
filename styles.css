@@ -1,0 +1,39 @@
+body {
+  background:#af1b3f;
+
+}
+
+#wrapper {
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 300px;
+}
+
+
+#stopwatch_timer {
+  margin: 0 auto;
+  display:block;
+  font-size: 72px;
+  color: white;
+  font-family: Geneva, Tahoma, sans-serif
+}
+
+#stopwatch_controls {
+  padding-top: 50px;
+}
+
+.btn {
+  display: inline;
+  border: 1px solid white;
+  border-radius: 10px;
+  color: white;
+  padding: 30px;
+  margin: 20px;
+  font-size: 36px;
+}
+
+.btn:hover {
+  color: cadetblue;
+  background: white;
+  cursor: pointer;
+}

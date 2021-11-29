@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>Stopwatch</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="stopwatch_timer">
+        <span class="hours">00</span> :
+        <span class="mins">00</span> :
+        <span class="secs">00</span> :
+        <span class="centis">00</span>
+
+      </div>
+      <div id="stopwatch_controls">
+        <span class="btn start stop">Start</span>
+        <span class="btn reset">Reset</span>
+      </div>
+    </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', event => {
+
+        const buttonStartStop = document.querySelector('.btn.start.stop');
+        const buttonReset = document.querySelector('.btn.reset');
+        let intervalId = null;
+
+        const centisSpan = document.querySelector('.centis');
+        const secondsSpan = document.querySelector('.secs');
+        const minutesSpan = document.querySelector('.mins');
+        const hoursSpan = document.querySelector('.hours');
+
+        buttonStartStop.addEventListener('click', event => {
+          event.stopPropagation();
+          let text = '';
+          let centis = parseInt(centisSpan.textContent, 10);
+          let secs = parseInt(secondsSpan.textContent, 10);
+          let mins = parseInt(minutesSpan.textContent, 10);
+          let hours = parseInt(hoursSpan.textContent, 10);
+          
+          if (buttonStartStop.textContent === 'Start') {
+            intervalId = setInterval(()=>{
+              centis += 1;
+
+              if (centis === 100) {
+                centis = 0;
+                secs += 1;
+                secondsSpan.textContent = `${String(secs).padStart(2,'0')}`;
+              }
+              
+              if (secs === 60) {
+                secs = 0;
+                mins += 1;
+                minutesSpan.textContent = `${String(mins).padStart(2,'0')}`;
+                secondsSpan.textContent = `${String(secs).padStart(2,'0')}`;
+              }
+              
+              if (mins === 60) {
+                mins = 0;
+                hours += 1;
+                minutesSpan.textContent = `${String(mins).padStart(2,'0')}`;
+                hoursSpan.textContent = `${String(hours).padStart(2,'0')}`;
+              }
+
+              centisSpan.textContent = `${String(centis).padStart(2,'0')}`;
+
+            }, 10)
+            text = 'Stop';
+          } else {
+            clearInterval(intervalId);
+            text = 'Start';
+          }
+          buttonStartStop.textContent = text;
+        });
+        
+        buttonReset.addEventListener('click', event =>{
+          event.stopPropagation();
+          clearInterval(intervalId);
+          centisSpan.textContent = '00';
+          secondsSpan.textContent = '00';
+          minutesSpan.textContent = '00';
+          hoursSpan.textContent = '00';
+          buttonStartStop.textContent = 'Start';
+
+        })
+      })
+
+    </script>
+  </body>
+</html>
