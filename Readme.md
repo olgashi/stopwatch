@@ -11,3 +11,5 @@
 Created with Javascript and CSS
 
 Deployed [here](https://stopwatch-js.herokuapp.com/)
+
+![stopwatch](https://user-images.githubusercontent.com/41551585/165633356-56015051-4c77-4400-bb75-c3ec30b3e78d.gif)
